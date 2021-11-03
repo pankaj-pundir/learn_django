@@ -1,1 +1,25 @@
-POLLS
+{% extends 'base.html' %}
+
+{% block content %}
+   <h1 >Poll Questions </h1>
+    {% if latest_question_list %}
+     {% for question in latest_question_list %}
+        <div class="card mb-3 ">
+            <div class="card-body">
+                <div class="lead">
+                    {{question.question_text}}
+
+                    <a href="{% url 'polls:detail' question.id  %}" class="btn btn-primary">Vote now</a>
+
+                    <a href="{% url 'polls:results' question.id  %}" class="btn btn-secondary">Results/a>
+                </div>
+            </div>
+        </div>
+     {% endfor %}
+    {% else %}
+     <p> No polls available </p>
+
+    {% endif %}
+
+
+{% endblock %}
